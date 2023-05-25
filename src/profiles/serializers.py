@@ -4,8 +4,9 @@ from .models import UserNet
 
 
 class UserNetSerializer(serializers.ModelSerializer):
-    """ Print user information """
-
+    """
+    Serializer for UserNet
+    """
     class Meta:
         model = UserNet
         exclude = ("password", "last_login", "is_active", "is_staff", "is_superuser")
