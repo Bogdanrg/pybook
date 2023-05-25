@@ -1,0 +1,27 @@
+version: '3.7'
+
+services:
+  pybook_back:
+    build: ./
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/usr/src/app/
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./.env.dev
+  pybook_db:
+    image: postgres
+    container_name: 'pybook_db'
+    volumes:
+      - pybook:/var/lib/postgresql/data/
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_USER=pybook_user
+      - POSTGRES_PASSWORD=pybook_pass
+      - POSTGRES_DB=pybook
+
+
+volumes:
+  pybook:
