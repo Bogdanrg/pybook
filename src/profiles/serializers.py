@@ -7,6 +7,8 @@ class UserNetSerializer(serializers.ModelSerializer):
     """
     Serializer for UserNet
     """
+    avatar = serializers.ImageField(read_only=True)
+
     class Meta:
         model = UserNet
         exclude = ("password", "last_login", "is_active", "is_staff", "is_superuser", "groups", "user_permissions")
@@ -14,8 +16,9 @@ class UserNetSerializer(serializers.ModelSerializer):
 
 class UserNetPublicSerializer(serializers.ModelSerializer):
     """
-    Serializer for Public user
+    Serializer for Public userв
     """
+
     class Meta:
         model = UserNet
         exclude = (

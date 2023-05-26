@@ -18,4 +18,4 @@ class UserNetViewSet(ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
-        return UserNet.objects.all()
+        return UserNet.objects.filter(id=self.request.user.id)
