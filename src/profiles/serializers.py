@@ -16,7 +16,7 @@ class UserNetSerializer(serializers.ModelSerializer):
 
 class UserNetPublicSerializer(serializers.ModelSerializer):
     """
-    Serializer for Public userв
+    Serializer for Public users
     """
 
     class Meta:

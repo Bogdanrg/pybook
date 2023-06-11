@@ -25,3 +25,4 @@ sqlparse==0.4.4
 tzdata==2023.3
 urllib3==2.0.2
 drf-yasg
+django-mptt

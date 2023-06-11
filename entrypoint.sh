@@ -8,7 +8,6 @@ then
     sleep 0.1
   done
 
-
   echo "Postgres started"
 fi
 
