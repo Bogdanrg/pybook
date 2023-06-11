@@ -19,6 +19,9 @@ class Post(models.Model):
     def __str__(self):
         return f'Posted by {self.user}'
 
+    def comments_count(self):
+        return self.comments.count()
+
 
 class Comment(AbstractComment, MPTTModel):
     """ Comment model for posts

@@ -17,7 +17,7 @@ class UserNet(AbstractUser):
     github = models.CharField(max_length=500, blank=True, null=True)
     birthday = models.DateField(blank=True, null=True)
     gender = models.CharField(choices=GENDER, max_length=6, default='male')
-    technology = models.ManyToManyField('Technology', related_name='users')
+    technology = models.ManyToManyField('Technology', related_name='users', blank=True)
 
 
 class Technology(models.Model):

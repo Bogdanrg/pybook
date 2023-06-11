@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import UserNet
+from .models import UserNet, Technology
 
 
 class UserNetSerializer(serializers.ModelSerializer):

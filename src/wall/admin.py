@@ -3,6 +3,11 @@ from mptt.admin import MPTTModelAdmin
 from src.wall.models import Comment, Post
 
 
+@admin.register(Post)
+class PostAdmin(admin.ModelAdmin):
+    """ Posts
+    """
+    list_display = ("user", "moderation", "created_date", "view_count", "published", "id")
 
 
 @admin.register(Comment)
