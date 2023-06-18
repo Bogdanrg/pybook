@@ -17,6 +17,7 @@ class ListCommentSerializer(serializers.ModelSerializer):
     """
     text = serializers.SerializerMethodField()
     children = RecursiveSerializer(many=True)
+    user = serializers.ReadOnlyField(source='user.username')
 
     def get_text(self, obj):
         if obj.deleted:
@@ -34,6 +35,7 @@ class PostSerializer(serializers.ModelSerializer):
     """
     user = serializers.ReadOnlyField(source='user.username')
     comments = ListCommentSerializer(many=True, read_only=True)
+    view_count = serializers.CharField(read_only=True)
 
     class Meta:
         model = Post
