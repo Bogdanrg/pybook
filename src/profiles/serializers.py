@@ -32,3 +32,12 @@ class UserNetPublicSerializer(serializers.ModelSerializer):
             "groups",
             "user_permissions"
         )
+
+
+class UserByFollowerSerializer(serializers.ModelSerializer):
+
+    avatar = serializers.ImageField(read_only=True)
+
+    class Meta:
+        model = UserNet
+        fields = ("id", "username", "avatar")
