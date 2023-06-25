@@ -18,7 +18,8 @@ class AddFollowerView(views.APIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def post(self, request, pk):
-        user = UserNet.objects.safe_get(pk=pk)
-        if user:
+        user = UserNet.objects.filter(pk=pk)
+        if user.exists():
             Follower.objects.create(subscriber=request.user, user=user)
+            return response.Response(status=201)
         return response.Response(status=404)

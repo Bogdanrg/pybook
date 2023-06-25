@@ -8,6 +8,8 @@ class UserNetSerializer(serializers.ModelSerializer):
     Serializer for UserNet
     """
     avatar = serializers.ImageField(read_only=True)
+    followers_count = serializers.CharField(read_only=True)
+    subscriptions_count = serializers.CharField(read_only=True)
 
     class Meta:
         model = UserNet
@@ -18,6 +20,8 @@ class UserNetPublicSerializer(serializers.ModelSerializer):
     """
     Serializer for Public users
     """
+    followers_count = serializers.CharField(read_only=True)
+    subscriptions_count = serializers.CharField(read_only=True)
 
     class Meta:
         model = UserNet

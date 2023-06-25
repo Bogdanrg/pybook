@@ -23,7 +23,7 @@ class UserNetAdmin(UserAdmin):
         (_("Important dates"), {"fields": ("last_login", "date_joined")}),
         (_("Additional info"), {"fields": ("phone", "avatar", "email")}),
     )
-    list_display = ("username", "email", "first_name", 'phone', "last_name", "is_staff")
+    list_display = ("id", "username", "email", "first_name", 'phone', "last_name", "is_staff")
 
 
 admin.site.register(UserNet, UserNetAdmin)

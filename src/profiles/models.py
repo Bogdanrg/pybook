@@ -2,14 +2,6 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
-class UserNetManager(models.Manager):
-    def safe_get(self, *args, **kwargs):
-        try:
-            return super().get(*args, **kwargs)
-        except UserNet.DoesNotExist:
-            return None
-
-
 class UserNet(AbstractUser):
     """ custom user model
     """
@@ -26,7 +18,12 @@ class UserNet(AbstractUser):
     birthday = models.DateField(blank=True, null=True)
     gender = models.CharField(choices=GENDER, max_length=6, default='male')
     technology = models.ManyToManyField('Technology', related_name='users', blank=True)
-    objects = UserNetManager()
+
+    def followers_count(self):
+        return self.users.count()
+
+    def subscriptions_count(self):
+        return self.followers.count()
 
 
 class Technology(models.Model):
