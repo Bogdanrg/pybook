@@ -3,6 +3,6 @@ from .views import *
 
 
 urlpatterns = [
-    path('add', AddFollowerView.as_view()),
+    path('<int:pk>', FollowerView.as_view()),
     path('', ListFollowerView.as_view())
 ]
