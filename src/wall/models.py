@@ -17,7 +17,7 @@ class Post(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='posts')
 
     def __str__(self):
-        return f'Posted by {self.user}'
+        return f'Posted by {self.user} - {self.id}'
 
     def comments_count(self):
         return self.comments.count()
