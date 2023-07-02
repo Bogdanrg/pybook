@@ -1,7 +1,7 @@
 from rest_framework import generics, permissions, views, response
 from .serializers import ListFollowerSerializer
 from .models import Follower
-from src.profiles.models import UserNet
+from .services import follower_service, user_service
 
 
 class ListFollowerView(generics.ListAPIView):
@@ -19,17 +19,20 @@ class FollowerView(views.APIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def post(self, request, pk):
-        try:
-            user = UserNet.objects.get(pk=pk)
-        except UserNet.DoesNotExist:
+        user = user_service.safe_get(pk=pk)
+        subscriber = user_service.safe_get(pk=request.user.id)
+        if not user:
             return response.Response(status=404)
-        Follower.objects.create(subscriber=request.user, user=user)
+        if follower_service.self_subscription(user, subscriber):
+            return response.Response(status=404)
+        follower_service.subscribe(user, subscriber)
         return response.Response(status=201)
 
     def delete(self, request, pk):
-        try:
-            sub = Follower.objects.get(subscriber=request.user, user_id=pk)
-        except Follower.DoesNotExist:
+        sub = follower_service.safe_get(user_id=pk, subscriber=request.user)
+        if not sub:
             return response.Response(status=404)
-        sub.delete()
-        response.Response(status=204)
+        user = user_service.safe_get(pk=pk)
+        subscriber = user_service.safe_get(pk=request.user.id)
+        follower_service.remove_subscription(user, subscriber)
+        return response.Response(status=204)
