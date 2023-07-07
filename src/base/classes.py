@@ -39,3 +39,17 @@ class CreateRetrieveUpdateDestroy(mixins.CreateModelMixin,
     """
     """
     pass
+
+
+class RetrieveUpdateDestroy(mixins.RetrieveModelMixin,
+                            mixins.UpdateModelMixin,
+                            mixins.DestroyModelMixin,
+                            viewsets.GenericViewSet):
+    pass
+
+
+class List(mixins.ListModelMixin,
+           generics.GenericAPIView):
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, args, kwargs)

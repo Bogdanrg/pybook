@@ -10,6 +10,7 @@ class UserNetSerializer(serializers.ModelSerializer):
     avatar = serializers.ImageField(read_only=True)
     followers_count = serializers.CharField(read_only=True)
     subscriptions_count = serializers.CharField(read_only=True)
+    groups_count = serializers.CharField(read_only=True)
 
     class Meta:
         model = UserNet
@@ -22,6 +23,7 @@ class UserNetPublicSerializer(serializers.ModelSerializer):
     """
     followers_count = serializers.CharField(read_only=True)
     subscriptions_count = serializers.CharField(read_only=True)
+    groups_count = serializers.CharField(read_only=True)
 
     class Meta:
         model = UserNet
@@ -45,3 +47,12 @@ class UserByFollowerSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserNet
         fields = ("id", "username", "avatar")
+
+
+class TechnologyListSerializer(serializers.ModelSerializer):
+    """ Serializer for Technologies
+    """
+
+    class Meta:
+        model = Technology
+        fields = ('name', )
