@@ -23,7 +23,7 @@ class FollowerCRUD(BaseCRUD):
 
 
 class UserNetCRUD(BaseCRUD):
-    """ CRUD operations to followers
+    """ CRUD operations to Users
     """
     CRUD_MODEL = UserNet
 

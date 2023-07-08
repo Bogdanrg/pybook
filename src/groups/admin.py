@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
-from .models import Group, GroupMembership
+from .models import Group, GroupMembership, GroupPost
 
 
 @admin.register(Group)
@@ -20,3 +20,8 @@ class GroupAdmin(admin.ModelAdmin):
 @admin.register(GroupMembership)
 class GroupMembershipAdmin(admin.ModelAdmin):
     list_display = ('id', 'user', 'group', 'date_joined', 'is_staff')
+
+
+@admin.register(GroupPost)
+class GroupPostAdmin(admin.ModelAdmin):
+    list_display = ('id', 'text', 'user')

@@ -29,17 +29,21 @@ class GroupSerializer(serializers.ModelSerializer):
     """
     group_posts = GroupPostListSerializer(many=True)
     members_count = serializers.CharField(read_only=True)
+    avatar = serializers.CharField(read_only=True)
+    technology = TechnologyListSerializer(many=True)
 
     class Meta:
         model = Group
-        fields = ('name', 'group_posts', 'members_count', 'avatar') # finish it
+        fields = ('name', 'group_posts', 'members_count', 'avatar', 'technology') # finish it
 
 
 class PrivateGroupSerializer(serializers.ModelSerializer):
     """ Private detail Group serializer
     """
     members_count = serializers.CharField(read_only=True)
+    avatar = serializers.CharField(read_only=True)
+    technology = TechnologyListSerializer(many=True)
 
     class Meta:
         model = Group
-        fields = '__all__'
+        fields = ('name', 'avatar', 'members_count', 'technology')
