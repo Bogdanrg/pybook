@@ -8,10 +8,11 @@ class GroupListSerializer(serializers.ModelSerializer):
     """
     avatar = serializers.ImageField(read_only=True)
     technology = TechnologyListSerializer(many=True, read_only=True)
+    members_count = serializers.CharField(read_only=True)
 
     class Meta:
         model = Group
-        fields = ('name', 'avatar', 'technology')
+        fields = ('name', 'avatar', 'technology', 'members_count')
 
 
 class GroupPostListSerializer(serializers.ModelSerializer):
@@ -26,16 +27,18 @@ class GroupPostListSerializer(serializers.ModelSerializer):
 class GroupSerializer(serializers.ModelSerializer):
     """ Detail Group serializer
     """
-    post = GroupPostListSerializer(many=True)
+    group_posts = GroupPostListSerializer(many=True)
+    members_count = serializers.CharField(read_only=True)
 
     class Meta:
         model = Group
-        fields = '__all__'
+        fields = ('name', 'group_posts', 'members_count', 'avatar') # finish it
 
 
 class PrivateGroupSerializer(serializers.ModelSerializer):
     """ Private detail Group serializer
     """
+    members_count = serializers.CharField(read_only=True)
 
     class Meta:
         model = Group

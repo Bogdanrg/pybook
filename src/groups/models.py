@@ -7,7 +7,7 @@ from src.wall.models import Post
 class GroupPost(Post):
     """ Post model for groups
     """
-    group_id = models.ForeignKey('Group', on_delete=models.CASCADE)
+    group_id = models.ForeignKey('Group', on_delete=models.CASCADE, related_name='group_posts')
 
 
 class Group(models.Model):
@@ -24,11 +24,14 @@ class Group(models.Model):
     def __str__(self):
         return f"{self.name}"
 
+    def members_count(self):
+        return self.members.count()
+
 
 class GroupMembership(models.Model):
     """ Through table for groups
     """
-    group = models.ForeignKey('Group', on_delete=models.CASCADE)
+    group = models.ForeignKey('Group', on_delete=models.CASCADE, related_name='members')
     user = models.ForeignKey(UserNet, on_delete=models.CASCADE)
     is_staff = models.BooleanField(default=False)
     date_joined = models.DateTimeField(auto_now_add=True)
