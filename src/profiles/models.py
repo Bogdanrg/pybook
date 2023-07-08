@@ -25,6 +25,9 @@ class UserNet(AbstractUser):
     def subscriptions_count(self):
         return self.followers.count()
 
+    def groups_count(self):
+        return self.groupsSub.count()
+
 
 class Technology(models.Model):
     """ Technology model

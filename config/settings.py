@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'src.comments',
     'src.followers',
     'src.feed',
-
+    'src.groups',
 ]
 
 MIDDLEWARE = [
